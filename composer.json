@@ -1,0 +1,15 @@
+{
+    "name": "code237/nkap",
+    "autoload": {
+        "psr-4": {
+            "Code237\\Nkap\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "HackerMan237",
+            "email": "93648451+LekeneCedric@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
