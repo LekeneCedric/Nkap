@@ -11,5 +11,7 @@
             "email": "93648451+LekeneCedric@users.noreply.github.com"
         }
     ],
-    "require": {}
+    "require": {
+        "ramsey/uuid": "^4.7"
+    }
 }
