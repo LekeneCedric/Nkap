@@ -1,26 +1,23 @@
 <?php
 
-namespace Code237\Nkap\Domain;
+namespace Code237\Nkap\Transaction\Domain;
 
-use Code237\Nkap\Domain\Enums\AccountCategoryEnum;
 use Code237\Nkap\Shared\VO\Datevo;
-use Code237\Nkap\Shared\VO\Id;
+use Code237\Nkap\Shared\VO\StringVO;
 
-class Account
+class TransactionCategory
 {
     private ?Datevo $createdAt;
     private ?Datevo $updatedAt;
     private ?Datevo $deletedAt;
-
     public function __construct(
-        private readonly Id $id,
-        private AccountCategoryEnum $accountCategory,
-        private array $transactions
+        private Id $id,
+        private StringVO $icon,
+        private StringVO $label,
     )
     {
         $this->createdAt = new Datevo();
         $this->updatedAt = null;
         $this->deletedAt = null;
     }
-
 }

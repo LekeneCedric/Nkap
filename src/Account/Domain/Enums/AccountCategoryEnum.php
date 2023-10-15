@@ -1,6 +1,6 @@
 <?php
 
-namespace Code237\Nkap\Domain\Enums;
+namespace Code237\Nkap\Account\Domain\Enums;
 
 enum AccountCategoryEnum: string
 {
