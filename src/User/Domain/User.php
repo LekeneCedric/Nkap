@@ -13,6 +13,7 @@ class User
     private ?Datevo $updatedAt;
     private ?Datevo $deletedAt;
     private bool $isDeleted = false;
+    
     public function __construct(
         private readonly Id $id,
         private StringVO $name,

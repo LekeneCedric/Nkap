@@ -12,7 +12,10 @@ class PdoUserRepository implements UserRepository
     public function save(User $user): true
     {
 
-        $sql = "";
+        $sql = "
+            INSERT INTO users(uuid, name, surname, email)
+            values (:uuid, :name, :surname, :email)
+        ";
         return true;
     }
 

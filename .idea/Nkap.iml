@@ -10,6 +10,14 @@
       <sourceFolder url="file://$MODULE_DIR$/src/User/Infrastructure" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/User/Repository" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/User/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Account" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Application" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Domain" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Infrastructure" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Repository" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Transaction" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/User" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />

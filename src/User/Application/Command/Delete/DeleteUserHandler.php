@@ -8,7 +8,7 @@ use Code237\Nkap\User\Domain\Exception\UserAlreadyExistException;
 use Code237\Nkap\User\Domain\User;
 use Code237\Nkap\User\Repository\UserRepository;
 
-class DeleteUserHandler
+readonly class DeleteUserHandler
 {
     public function __construct(
         private UserRepository $userRepository,
