@@ -25,4 +25,12 @@ class InMemoryUserRepository implements UserRepository
         }
         return $this->users[$userId->value()];
     }
+
+    public function deleteById(Id $userId): true
+    {
+        if (array_key_exists($userId->value(), $this->users)) {
+            unset($this->users[$userId->value()]);
+        }
+        return true;
+    }
 }

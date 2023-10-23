@@ -25,9 +25,7 @@ readonly class DeleteUserHandler
 
         $user = $this->GetUserByIdOrThrowIfNotExistUserNotFoundException($userId);
 
-        $user->markAsDeleted();
-
-        $this->userRepository->save($user);
+        $this->userRepository->deleteById($user->id());
 
         $response->isDeleted = true;
 

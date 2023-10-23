@@ -11,7 +11,6 @@ class User
 {
     private ?Datevo $createdAt;
     private ?Datevo $updatedAt;
-    private ?Datevo $deletedAt;
     private bool $isDeleted = false;
     
     public function __construct(
@@ -23,7 +22,6 @@ class User
     {
         $this->createdAt = new Datevo();
         $this->updatedAt = null;
-        $this->deletedAt = null;
     }
 
     public static function create(
@@ -110,14 +108,14 @@ class User
     {
         return $this->updatedAt;
     }
-    public function deletedAt(): ?Datevo
+
+    public function mappedData(): array
     {
-        return $this->deletedAt;
-    }
-    public function markAsDeleted(): void
-    {
-        $this->isDeleted = true;
-        $this->updatedAt = new Datevo();
-        $this->deletedAt = new Datevo();
+        return [
+          "uuid" => $this->id->value(),
+          "name" => $this->name->value(),
+          "surname" => $this->surName->value(),
+          "email" => $this->email->value()
+        ];
     }
 }

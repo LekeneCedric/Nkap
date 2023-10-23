@@ -13,4 +13,6 @@ interface UserRepository
      */
     public function save(User $user): true;
     public function byId(Id $userId): ?User;
+
+    public function deleteById(Id $userId): true;
 }

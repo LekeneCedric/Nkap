@@ -38,9 +38,12 @@ class DeleteUserTest extends TestCase
 
         $this->repository->save($savedUser);
 
+        $this->assertArrayHasKey($savedUser->id()->value(), $this->repository->users);
+
         $response = $this->deleteUser($savedUser->id());
 
         $this->assertTrue($response->isDeleted);
+        $this->assertArrayNotHasKey($savedUser->id()->value(), $this->repository->users);
     }
 
     /**
