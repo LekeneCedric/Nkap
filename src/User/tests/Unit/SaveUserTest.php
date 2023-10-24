@@ -26,11 +26,13 @@ class SaveUserTest extends TestCase
         $name = "Lekene";
         $surname = "Cedric";
         $email = "lekene@gmail.com";
+        $password = "hackerMan";
 
         $command = SaveUserCommandBuilder::asSUT()
                         ->withName($name)
                         ->withSurname($surname)
                         ->withEmail($email)
+                        ->withPassword($password)
                         ->build();
 
         $response = $this->saveUser($command);
@@ -44,11 +46,13 @@ class SaveUserTest extends TestCase
         $name = "Lekene";
         $surname = "Cedric";
         $email = "lekenegmail.com";
+        $password = "hackerMan";
 
         $command = SaveUserCommandBuilder::asSUT()
             ->withName($name)
             ->withSurname($surname)
             ->withEmail($email)
+            ->withPassword($password)
             ->build();
 
         $this->expectException(InvalidArgumentException::class);

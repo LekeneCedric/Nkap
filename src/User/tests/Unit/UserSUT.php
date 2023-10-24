@@ -2,7 +2,9 @@
 
 namespace Code237\Nkap\User\tests\Unit;
 
+use Code237\Nkap\Shared\VO\Datevo;
 use Code237\Nkap\Shared\VO\EmailVo;
+use Code237\Nkap\Shared\VO\PasswordVo;
 use Code237\Nkap\Shared\VO\StringVO;
 use Code237\Nkap\User\Domain\User;
 
@@ -17,6 +19,8 @@ class UserSUT
            name: new StringVO("Lekene"),
            surname: new StringVO("Luc cedric"),
            email: new EmailVo("lekene@gmail.com"),
+           password: PasswordVo::fromPassword("hackerMan"),
+           createdAt: new Datevo(), updatedAt: new Datevo()
        );
 
        return $self;

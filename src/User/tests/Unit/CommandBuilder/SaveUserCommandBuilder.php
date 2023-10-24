@@ -9,6 +9,7 @@ class SaveUserCommandBuilder
     private ?string $name = null;
     private ?string $surname = null;
     private ?string $email = null;
+    private ?string $password = null;
     public static function asSUT(): SaveUserCommandBuilder
     {
         return new self();
@@ -35,16 +36,25 @@ class SaveUserCommandBuilder
         return $this;
     }
 
+    public function withPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
     public function build(): SaveUserCommand
     {
         $name = $this->name;
         $surname = $this->surname;
         $email = $this->email;
+        $password = $this->password;
 
         return new SaveUserCommand(
             name: $name,
             surname: $surname,
-            email: $email
+            email: $email,
+            password: $password,
         );
     }
 }

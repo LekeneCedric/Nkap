@@ -2,7 +2,9 @@
 
 namespace Code237\Nkap\User\Application\Command\Save;
 
+use Code237\Nkap\Shared\VO\Datevo;
 use Code237\Nkap\Shared\VO\EmailVo;
+use Code237\Nkap\Shared\VO\PasswordVo;
 use Code237\Nkap\Shared\VO\StringVO;
 use Code237\Nkap\User\Domain\User;
 use Code237\Nkap\User\Repository\UserRepository;
@@ -22,7 +24,9 @@ readonly class SaveUserHandler
         $user = User::create(
           name: new StringVO($command->name),
           surname: new StringVO($command->surname),
-          email: new EmailVo($command->email)
+          email: new EmailVo($command->email),
+          password: PasswordVo::fromPassword($command->password),
+          createdAt: new Datevo(),updatedAt: new Datevo()
         );
 
         $this->userRepository->save($user);

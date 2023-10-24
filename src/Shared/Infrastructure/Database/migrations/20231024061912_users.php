@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
@@ -16,20 +17,16 @@ final class Users extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function up()
+    public function change(): void
     {
         $table = $this->table("users");
         $table->addColumn('uuid', 'string', ['limit' => 255])
             ->addColumn('name', 'string', ['limit' => 255])
             ->addColumn('surname', 'string', ['limit' => 255])
             ->addColumn('email', 'string', ['limit' => 255])
+            ->addColumn('password', 'string', ['limit' => 255])
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime')
-            ->addColumn('deleted_at', 'datetime')
-            ->update();
-    }
-    public function down(): void
-    {
-        $this->table('users')->drop()->save();
+            ->save();
     }
 }
