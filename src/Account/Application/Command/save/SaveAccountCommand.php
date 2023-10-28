@@ -9,9 +9,6 @@ class SaveAccountCommand
     public function __construct(
         public string $userId,
         public float $balance,
-        public float $totalIncomes,
-        public float $totalExpenses,
-        public string $lastTransactionDate,
         public string $accountName,
         public bool $isIncludeInTotalBalance,
     )

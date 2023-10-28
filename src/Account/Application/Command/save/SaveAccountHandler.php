@@ -21,17 +21,14 @@ readonly class SaveAccountHandler
     {
         $response = new SaveAccountResponse();
 
-        $accountToSave = Account::create(
+        $newAccount = Account::create(
             userId: new Id($saveAccountCommand->userId),
             balance: new AmountVo($saveAccountCommand->balance),
-            totalIncomes: new AmountVo($saveAccountCommand->totalIncomes),
-            totalExpenses: new AmountVo($saveAccountCommand->totalExpenses),
-            lastTransactionDate: new Datevo($saveAccountCommand->lastTransactionDate),
             name: new StringVO($saveAccountCommand->accountName),
             isIncludeInTotalBalance: $saveAccountCommand->isIncludeInTotalBalance,
         );
 
-        $this->accountRepository->save($accountToSave);
+        $this->accountRepository->save($newAccount);
 
         $response->isSaved = true;
         $response->message = 'Compte sauvegardé avec succès !';

@@ -30,9 +30,6 @@ class SaveAccountTest extends TestCase
         $saveAccountCommand = SaveAccountCommandBuilder::asBuilder()
                     ->withUserId((new Id())->value())
                     ->withBalance(2000)
-                    ->withTotalIncomes(3000)
-                    ->withTotalExpenses(1000)
-                    ->withLastTransactionDate((new Datevo())->formatYMDHIS())
                     ->withAccountName('compte étudiant')
                     ->withIsIncludeInTotalBalance(true)
                     ->build();
