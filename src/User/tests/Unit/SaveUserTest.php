@@ -5,7 +5,7 @@ namespace Code237\Nkap\User\tests\Unit;
 use Code237\Nkap\User\Application\Command\Save\SaveUserCommand;
 use Code237\Nkap\User\Application\Command\Save\SaveUserHandler;
 use Code237\Nkap\User\Application\Command\Save\SaveUserResponse;
-use Code237\Nkap\User\Repository\UserRepository;
+use Code237\Nkap\User\Domain\UserRepository;
 use Code237\Nkap\User\tests\Unit\CommandBuilder\SaveUserCommandBuilder;
 use Code237\Nkap\User\tests\Unit\Repository\InMemoryUserRepository;
 use InvalidArgumentException;

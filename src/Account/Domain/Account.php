@@ -40,6 +40,8 @@ class Account
         StringVO  $name,
         bool      $isIncludeInTotalBalance,
         ?Id       $id = new Id(),
+        ?Datevo $createdAt = null,
+        ?Datevo $updatedAt = null,
         ?StringVO $color = null,
         ?StringVO $iconName = null,
     ): Account
@@ -51,6 +53,9 @@ class Account
             accountName: $name,
             isIncludeInTotalBalance: $isIncludeInTotalBalance
         );
+        $newAccount->createdAt = $createdAt?: new Datevo();
+        $newAccount->updatedAt = $updatedAt?: new Datevo();
+        $newAccount->lastTransactionDate = new Datevo();
         $newAccount->iconName = $iconName ?: new StringVO('balance');
         $newAccount->color = $color ?: new StringVO('green');
 
@@ -60,5 +65,59 @@ class Account
     public function id(): Id
     {
         return $this->id;
+    }
+
+    public function userId(): Id
+    {
+        return $this->userId;
+    }
+
+    public function balance(): AmountVo
+    {
+        return $this->balance;
+    }
+    public function name(): StringVO
+    {
+        return $this->accountName;
+    }
+
+    public function isIncludeInTotalBalance(): bool
+    {
+        return $this->isIncludeInTotalBalance;
+    }
+
+    public function totalIncomes(): AmountVo
+    {
+        return $this->totalIncomes;
+    }
+
+    public function totalExpenses(): AmountVo
+    {
+        return $this->totalExpenses;
+    }
+
+    public function lastTransactionDate(): Datevo
+    {
+        return $this->lastTransactionDate;
+    }
+
+    public function iconName(): StringVO
+    {
+        return $this->iconName;
+    }
+
+    public function color(): StringVO
+    {
+        return $this->color;
+    }
+
+    public function createdAt(): Datevo
+    {
+        return $this->createdAt;
+    }
+
+    public function updatedAt(): Datevo
+    {
+        return $this->updatedAt;
     }
 }

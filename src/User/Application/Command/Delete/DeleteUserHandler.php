@@ -3,10 +3,9 @@
 namespace Code237\Nkap\User\Application\Command\Delete;
 
 use Code237\Nkap\Shared\VO\Id;
-use Code237\Nkap\Shared\VO\StringVO;
 use Code237\Nkap\User\Domain\Exception\UserAlreadyExistException;
 use Code237\Nkap\User\Domain\User;
-use Code237\Nkap\User\Repository\UserRepository;
+use Code237\Nkap\User\Domain\UserRepository;
 
 readonly class DeleteUserHandler
 {

@@ -1,8 +1,6 @@
 <?php
 
-namespace Code237\Nkap\Account\Domain\Respository;
-
-use Code237\Nkap\Account\Domain\Account;
+namespace Code237\Nkap\Account\Domain;
 
 interface AccountRepository
 {

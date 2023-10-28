@@ -8,9 +8,6 @@ class SaveAccountCommandBuilder
 {
     private string $userId;
     private float $balance;
-    private float $totalIncomes;
-    private float $totalExpenses;
-    private string $lastTransactionDate;
     private string $accountName;
     private string $isIncludeInTotalBalance;
     public static function asBuilder(): SaveAccountCommandBuilder
@@ -27,24 +24,6 @@ class SaveAccountCommandBuilder
     public function withBalance(int $value): static
     {
         $this->balance = $value;
-        return $this;
-    }
-
-    public function withTotalIncomes(int $value): static
-    {
-        $this->totalIncomes = $value;
-        return $this;
-    }
-
-    public function withTotalExpenses(int $value): static
-    {
-        $this->totalExpenses = $value;
-        return $this;
-    }
-
-    public function withLastTransactionDate(string $date): static
-    {
-        $this->lastTransactionDate = $date;
         return $this;
     }
 
@@ -65,9 +44,6 @@ class SaveAccountCommandBuilder
         return new SaveAccountCommand(
             userId: $this->userId,
             balance: $this->balance,
-            totalIncomes: $this->totalIncomes,
-            totalExpenses: $this->totalExpenses,
-            lastTransactionDate: $this->lastTransactionDate,
             accountName: $this->accountName,
             isIncludeInTotalBalance: $this->isIncludeInTotalBalance,
         );

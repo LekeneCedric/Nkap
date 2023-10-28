@@ -15,9 +15,14 @@ class AmountVo
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function value(): string
+    public function value(): float
+    {
+        return $this->amount;
+    }
+
+    public function readableValue(): string
     {
         return number_format($this->amount, 2, ',', ' ');
     }

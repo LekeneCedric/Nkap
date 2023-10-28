@@ -7,7 +7,7 @@ use Code237\Nkap\Shared\VO\EmailVo;
 use Code237\Nkap\Shared\VO\PasswordVo;
 use Code237\Nkap\Shared\VO\StringVO;
 use Code237\Nkap\User\Domain\User;
-use Code237\Nkap\User\Repository\UserRepository;
+use Code237\Nkap\User\Domain\UserRepository;
 
 readonly class SaveUserHandler
 {

@@ -2,12 +2,13 @@
 
 namespace Code237\Nkap\User\tests\Feature;
 
+use Code237\Nkap\Shared\Infrastructure\Lib\MySQLPdoConnection;
 use Code237\Nkap\Shared\VO\Id;
 use Code237\Nkap\User\Application\Command\Save\SaveUserCommand;
 use Code237\Nkap\User\Application\Command\Save\SaveUserHandler;
 use Code237\Nkap\User\Application\Command\Save\SaveUserResponse;
-use Code237\Nkap\User\Infrastructure\Services\PdoUserRepository;
-use Code237\Nkap\User\Repository\UserRepository;
+use Code237\Nkap\User\Domain\UserRepository;
+use Code237\Nkap\User\Infrastructure\Repositories\PdoUserRepository;
 use Code237\Nkap\User\tests\Unit\CommandBuilder\SaveUserCommandBuilder;
 use PHPUnit\Framework\TestCase;
 
@@ -18,7 +19,7 @@ class UserRepositoryTest extends TestCase
     {
         parent::setUp();
 
-        $this->repository = new PdoUserRepository();
+        $this->repository = new PdoUserRepository(new MySQLPdoConnection());
     }
 
     public function test_can_save_user()
