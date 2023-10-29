@@ -8,3 +8,4 @@ Full PHP API allowing users to manage their finances (expenses, cash receipts, a
 ## DEVELOPMENT PRACTICES
 - TDD 
 - CLEAN CODE 
+- CQRS
