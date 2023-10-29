@@ -2,7 +2,7 @@
 
 namespace Code237\Nkap\Account\Infrastructure\Repositories;
 
-use Code237\Nkap\Account\Application\Command\create\AccountDto;
+use Code237\Nkap\Account\Application\Command\Create\AccountDto;
 use Code237\Nkap\Account\Domain\Account;
 use Code237\Nkap\Account\Domain\AccountRepository;
 use Code237\Nkap\Shared\Lib\PdoConnection;
@@ -166,6 +166,23 @@ readonly class PdoAccountRepository implements AccountRepository
         $statement->bindParam('createdAt', $createdAt);
         $statement->bindParam('updatedAt', $updatedAt);
 
+        $statement->execute();
+
+        return true;
+    }
+
+    public function delete(Id $accountId): true
+    {
+        $accountIdValue = $accountId->value();
+
+        $sql = "
+            DELETE 
+            FROM Accounts
+            WHERE uuid = :accountId
+        ";
+
+        $statement = $this->pdoConnection->getPdo()->prepare($sql);
+        $statement->bindParam('accountId', $accountIdValue);
         $statement->execute();
 
         return true;

@@ -2,9 +2,9 @@
 
 namespace Code237\Nkap\Account\tests\Unit;
 
-use Code237\Nkap\Account\Application\Command\update\UpdateAccountCommand;
-use Code237\Nkap\Account\Application\Command\update\UpdateAccountHandler;
-use Code237\Nkap\Account\Application\Command\update\UpdateAccountResponse;
+use Code237\Nkap\Account\Application\Command\Update\UpdateAccountCommand;
+use Code237\Nkap\Account\Application\Command\Update\UpdateAccountHandler;
+use Code237\Nkap\Account\Application\Command\Update\UpdateAccountResponse;
 use Code237\Nkap\Account\Domain\Account;
 use Code237\Nkap\Account\Domain\AccountRepository;
 use Code237\Nkap\Account\Domain\Services\CheckIfAlreadyExistAccountByIdOrThrowNotFoundAccountExceptionService;

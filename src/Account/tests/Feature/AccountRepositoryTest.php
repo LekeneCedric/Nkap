@@ -74,4 +74,21 @@ class AccountRepositoryTest extends TestCase
 
         $this->assertTrue($response);
     }
+
+    public function test_can_delete_account()
+    {
+        $createdAccount = Account::create(
+            userId: new Id(),
+            balance: new AmountVo(2000),
+            name: new StringVO("compte epargne"),
+            isIncludeInTotalBalance: true
+        );
+
+        $this->repository->create($createdAccount);
+
+        $response = $this->repository->delete($createdAccount->id());
+
+        $this->assertTrue($response);
+        $this->assertNull($this->repository->getById($createdAccount->id()));
+    }
 }

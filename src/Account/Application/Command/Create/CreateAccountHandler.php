@@ -1,6 +1,6 @@
 <?php
 
-namespace Code237\Nkap\Account\Application\Command\create;
+namespace Code237\Nkap\Account\Application\Command\Create;
 
 use Code237\Nkap\Account\Domain\Account;
 use Code237\Nkap\Account\Domain\AccountRepository;

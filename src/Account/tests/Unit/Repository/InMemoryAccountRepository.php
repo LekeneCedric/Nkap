@@ -35,4 +35,11 @@ class InMemoryAccountRepository implements AccountRepository
         $this->accounts[$accountToUpdate->id()->value()] = $accountToUpdate;
         return true;
     }
+
+    public function delete(Id $accountId): true
+    {
+        unset($this->accounts[$accountId->value()]);
+
+        return true;
+    }
 }

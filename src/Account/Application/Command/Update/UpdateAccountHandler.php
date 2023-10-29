@@ -1,6 +1,6 @@
 <?php
 
-namespace Code237\Nkap\Account\Application\Command\update;
+namespace Code237\Nkap\Account\Application\Command\Update;
 
 use Code237\Nkap\Account\Domain\Account;
 use Code237\Nkap\Account\Domain\AccountRepository;

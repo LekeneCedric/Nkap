@@ -2,9 +2,9 @@
 
 namespace Code237\Nkap\Account\tests\Unit;
 
-use Code237\Nkap\Account\Application\Command\create\CreateAccountCommand;
-use Code237\Nkap\Account\Application\Command\create\CreateAccountHandler;
-use Code237\Nkap\Account\Application\Command\create\CreateAccountResponse;
+use Code237\Nkap\Account\Application\Command\Create\CreateAccountCommand;
+use Code237\Nkap\Account\Application\Command\Create\CreateAccountHandler;
+use Code237\Nkap\Account\Application\Command\Create\CreateAccountResponse;
 use Code237\Nkap\Account\Domain\AccountRepository;
 use Code237\Nkap\Account\Domain\Exceptions\UserLinkedToAccountDoesNotExistException;
 use Code237\Nkap\Account\Domain\Services\CheckIfUserLinkedToAccountExistOrThrowException;
@@ -12,7 +12,6 @@ use Code237\Nkap\Account\tests\Unit\CommandBuilder\CreateAccountCommandBuilder;
 use Code237\Nkap\Account\tests\Unit\Repository\InMemoryAccountRepository;
 use Code237\Nkap\Account\tests\Unit\Services\InMemoryCheckIfUserLinkedToAccountExistOrThrowException;
 use Code237\Nkap\Shared\VO\EmailVo;
-use Code237\Nkap\Shared\VO\Id;
 use Code237\Nkap\Shared\VO\PasswordVo;
 use Code237\Nkap\Shared\VO\StringVO;
 use Code237\Nkap\User\Domain\User;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Code237\Nkap\Account\Application\Command\update;
+namespace Code237\Nkap\Account\Application\Command\Create;
 
-class UpdateAccountCommand
+class CreateAccountCommand
 {
     public ?string $id = null;
     public ?float $totalIncomes = null;

@@ -23,4 +23,6 @@ interface AccountRepository
      * @return true
      */
     public function update(Account $accountToUpdate): true;
+
+    public function delete(Id $accountId): true;
 }
