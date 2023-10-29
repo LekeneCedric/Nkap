@@ -2,18 +2,19 @@
 
 namespace Code237\Nkap\Account\tests\Unit\CommandBuilder;
 
-use Code237\Nkap\Account\Application\Command\save\SaveAccountCommand;
+use Code237\Nkap\Account\Application\Command\create\CreateAccountCommand;
 
-class SaveAccountCommandBuilder
+class CreateAccountCommandBuilder
 {
     private string $userId;
     private float $balance;
     private string $accountName;
     private string $isIncludeInTotalBalance;
-    public static function asBuilder(): SaveAccountCommandBuilder
+    public static function asBuilder(): CreateAccountCommandBuilder
     {
         return new self();
     }
+
 
     public function withUserId(string $value): static
     {
@@ -39,9 +40,9 @@ class SaveAccountCommandBuilder
         return $this;
     }
 
-    public function build(): SaveAccountCommand
+    public function build(): CreateAccountCommand
     {
-        return new SaveAccountCommand(
+        return new CreateAccountCommand(
             userId: $this->userId,
             balance: $this->balance,
             accountName: $this->accountName,

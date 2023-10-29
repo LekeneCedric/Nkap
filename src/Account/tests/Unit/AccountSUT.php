@@ -28,7 +28,7 @@ class AccountSUT
         $self->balance = new AmountVo(2000);
         $self->totalIncomes = new AmountVo(3000);
         $self->totalExpenses = new AmountVo(1000);
-        $self->lastTransactionDate = new Datevo('2023-09-30');
+        $self->lastTransactionDate = new Datevo('2023-09-30 12:30:00');
         $self->accountName = new StringVO("Mes epargnes");
         $self->iconName = new StringVO('icone');
         $self->color = new StringVO('red');
@@ -42,11 +42,11 @@ class AccountSUT
         $this->account = Account::create(
             userId: $this->userId,
             balance: $this->balance,
+            name: $this->accountName,
+            isIncludeInTotalBalance: $this->isIncludeInTotalBalance,
             totalIncomes: $this->totalIncomes,
             totalExpenses: $this->totalExpenses,
             lastTransactionDate: $this->lastTransactionDate,
-            name: $this->accountName,
-            isIncludeInTotalBalance: $this->isIncludeInTotalBalance,
             iconName: $this->iconName,
         );
 

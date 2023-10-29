@@ -9,13 +9,8 @@ use Code237\Nkap\Shared\VO\StringVO;
 
 class Account
 {
-    private ?StringVO $iconName;
-    private ?StringVO $color;
-    private ?Datevo $createdAt;
-    private ?AmountVo $totalIncomes;
-    private ?AmountVo $totalExpenses;
-    private ?Datevo $lastTransactionDate;
-    private ?Datevo $updatedAt;
+    private ?Datevo $createdAt = null;
+    private ?Datevo $updatedAt = null;
 
     public function __construct(
         private readonly Id $id,
@@ -23,15 +18,13 @@ class Account
         private AmountVo    $balance,
         private StringVO    $accountName,
         private bool        $isIncludeInTotalBalance,
+        private StringVO $iconName,
+        private StringVO $color,
+        private AmountVo $totalIncomes,
+        private AmountVo $totalExpenses,
+        private Datevo $lastTransactionDate,
     )
     {
-        $this->totalIncomes = new AmountVo(0);
-        $this->totalExpenses = new AmountVo(0);
-        $this->lastTransactionDate = null;
-        $this->iconName = null;
-        $this->color = null;
-        $this->createdAt = null;
-        $this->updatedAt = null;
     }
 
     public static function create(
@@ -40,10 +33,13 @@ class Account
         StringVO  $name,
         bool      $isIncludeInTotalBalance,
         ?Id       $id = new Id(),
-        ?Datevo $createdAt = null,
-        ?Datevo $updatedAt = null,
-        ?StringVO $color = null,
-        ?StringVO $iconName = null,
+        ?Datevo $createdAt = new Datevo(),
+        ?Datevo $updatedAt = new Datevo(),
+        ?AmountVo $totalIncomes = new AmountVo(0),
+        ?AmountVo $totalExpenses = new AmountVo(0),
+        ?Datevo $lastTransactionDate = new Datevo(),
+        ?StringVO $color = new StringVO('green'),
+        ?StringVO $iconName = new StringVO('balance'),
     ): Account
     {
         $newAccount = new self(
@@ -51,13 +47,15 @@ class Account
             userId: $userId,
             balance: $balance,
             accountName: $name,
-            isIncludeInTotalBalance: $isIncludeInTotalBalance
+            isIncludeInTotalBalance: $isIncludeInTotalBalance,
+            iconName: $iconName,
+            color: $color,
+            totalIncomes: $totalIncomes,
+            totalExpenses: $totalExpenses,
+            lastTransactionDate: $lastTransactionDate,
         );
-        $newAccount->createdAt = $createdAt?: new Datevo();
-        $newAccount->updatedAt = $updatedAt?: new Datevo();
-        $newAccount->lastTransactionDate = new Datevo();
-        $newAccount->iconName = $iconName ?: new StringVO('balance');
-        $newAccount->color = $color ?: new StringVO('green');
+        $newAccount->createdAt = $createdAt;
+        $newAccount->updatedAt = $updatedAt;
 
         return $newAccount;
     }
@@ -119,5 +117,10 @@ class Account
     public function updatedAt(): Datevo
     {
         return $this->updatedAt;
+    }
+
+    public function changeName(StringVO $name): void
+    {
+        $this->accountName = $name;
     }
 }
