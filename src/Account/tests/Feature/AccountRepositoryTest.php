@@ -3,10 +3,10 @@
 namespace Code237\Nkap\Account\tests\Feature;
 
 use Code237\Nkap\Account\Domain\Account;
-use Code237\Nkap\Account\Domain\AccountRepository;
+use Code237\Nkap\Account\Domain\Repositories\AccountRepository;
 use Code237\Nkap\Account\Infrastructure\Repositories\PdoAccountRepository;
 use Code237\Nkap\Shared\Infrastructure\Lib\MySQLPdoConnection;
-use Code237\Nkap\Shared\VO\AmountVo;
+use Code237\Nkap\Shared\VO\AmountVO;
 use Code237\Nkap\Shared\VO\Id;
 use Code237\Nkap\Shared\VO\StringVO;
 use Exception;
@@ -26,7 +26,7 @@ class AccountRepositoryTest extends TestCase
     {
         $accountToSave = Account::create(
             userId: new Id(),
-            balance: new AmountVo(2000),
+            balance: new AmountVO(2000),
             name: new StringVO("compte epargne"),
             isIncludeInTotalBalance: true
         );
@@ -40,7 +40,7 @@ class AccountRepositoryTest extends TestCase
     {
         $savedAccount = Account::create(
             userId: new Id(),
-            balance: new AmountVo(2000),
+            balance: new AmountVO(2000),
             name: new StringVO("compte epargne"),
             isIncludeInTotalBalance: true
         );
@@ -61,7 +61,7 @@ class AccountRepositoryTest extends TestCase
     {
         $savedAccount = Account::create(
             userId: new Id(),
-            balance: new AmountVo(2000),
+            balance: new AmountVO(2000),
             name: new StringVO("compte epargne"),
             isIncludeInTotalBalance: true
         );
@@ -79,7 +79,7 @@ class AccountRepositoryTest extends TestCase
     {
         $createdAccount = Account::create(
             userId: new Id(),
-            balance: new AmountVo(2000),
+            balance: new AmountVO(2000),
             name: new StringVO("compte epargne"),
             isIncludeInTotalBalance: true
         );

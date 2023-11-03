@@ -8,7 +8,7 @@ vendor
 /src/config/.env
 /.env.backup
 /.env.production
-/.phpunit.result.cache
+/   .phpunit.result.cache
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml

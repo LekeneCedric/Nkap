@@ -1,12 +1,12 @@
 <?php
 
-namespace Code237\Nkap\Account\tests\Unit;
+namespace Code237\Nkap\Account\tests\Unit\Account;
 
-use Code237\Nkap\Account\Application\Command\Update\UpdateAccountCommand;
-use Code237\Nkap\Account\Application\Command\Update\UpdateAccountHandler;
-use Code237\Nkap\Account\Application\Command\Update\UpdateAccountResponse;
+use Code237\Nkap\Account\Application\Command\Account\Update\UpdateAccountCommand;
+use Code237\Nkap\Account\Application\Command\Account\Update\UpdateAccountHandler;
+use Code237\Nkap\Account\Application\Command\Account\Update\UpdateAccountResponse;
 use Code237\Nkap\Account\Domain\Account;
-use Code237\Nkap\Account\Domain\AccountRepository;
+use Code237\Nkap\Account\Domain\Repositories\AccountRepository;
 use Code237\Nkap\Account\Domain\Services\CheckIfAlreadyExistAccountByIdOrThrowNotFoundAccountExceptionService;
 use Code237\Nkap\Account\tests\Unit\CommandBuilder\UpdateAccountCommandBuilder;
 use Code237\Nkap\Account\tests\Unit\Repository\InMemoryAccountRepository;

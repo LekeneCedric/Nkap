@@ -4,7 +4,7 @@ namespace Code237\Nkap\Shared\VO;
 
 use InvalidArgumentException;
 
-readonly class EmailVo
+readonly class EmailVO
 {
     public function __construct(
         private string $value,

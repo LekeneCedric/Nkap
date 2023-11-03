@@ -2,12 +2,12 @@
 
 namespace Code237\Nkap\Account\Infrastructure\Repositories;
 
-use Code237\Nkap\Account\Application\Command\Create\AccountDto;
+use Code237\Nkap\Account\Application\Command\Account\AccountDto;
 use Code237\Nkap\Account\Domain\Account;
-use Code237\Nkap\Account\Domain\AccountRepository;
+use Code237\Nkap\Account\Domain\Repositories\AccountRepository;
 use Code237\Nkap\Shared\Lib\PdoConnection;
-use Code237\Nkap\Shared\VO\AmountVo;
-use Code237\Nkap\Shared\VO\Datevo;
+use Code237\Nkap\Shared\VO\AmountVO;
+use Code237\Nkap\Shared\VO\DateVO;
 use Code237\Nkap\Shared\VO\Id;
 use Code237\Nkap\Shared\VO\StringVO;
 use Exception;
@@ -101,15 +101,15 @@ readonly class PdoAccountRepository implements AccountRepository
         }
         return Account::create(
             userId: new Id($result->userId),
-            balance: new AmountVo($result->balance),
+            balance: new AmountVO($result->balance),
             name: new StringVO($result->name),
             isIncludeInTotalBalance: $result->isIncludeInTotalBalance,
             id: new Id($result->id),
-            createdAt: new Datevo($result->createdAt),
-            updatedAt: new Datevo($result->updatedAt),
-            totalIncomes: new AmountVo($result->totalIncomes),
-            totalExpenses: new AmountVo($result->totalExpenses),
-            lastTransactionDate: new Datevo($result->lastTransactionDate),
+            createdAt: new DateVO($result->createdAt),
+            updatedAt: new DateVO($result->updatedAt),
+            totalIncomes: new AmountVO($result->totalIncomes),
+            totalExpenses: new AmountVO($result->totalExpenses),
+            lastTransactionDate: new DateVO($result->lastTransactionDate),
             color: new StringVO($result->color),
             iconName: new StringVO($result->iconName),
         );

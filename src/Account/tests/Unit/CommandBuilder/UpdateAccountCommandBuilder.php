@@ -3,7 +3,7 @@
 namespace Code237\Nkap\Account\tests\Unit\CommandBuilder;
 
 
-use Code237\Nkap\Account\Application\Command\Update\UpdateAccountCommand;
+use Code237\Nkap\Account\Application\Command\Account\Update\UpdateAccountCommand;
 
 class UpdateAccountCommandBuilder
 {

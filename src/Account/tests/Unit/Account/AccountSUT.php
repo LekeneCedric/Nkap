@@ -1,11 +1,10 @@
 <?php
 
-namespace Code237\Nkap\Account\tests\Unit;
+namespace Code237\Nkap\Account\tests\Unit\Account;
 
 use Code237\Nkap\Account\Domain\Account;
-use Code237\Nkap\Shared\Enums\DeviceEnum;
-use Code237\Nkap\Shared\VO\AmountVo;
-use Code237\Nkap\Shared\VO\Datevo;
+use Code237\Nkap\Shared\VO\AmountVO;
+use Code237\Nkap\Shared\VO\DateVO;
 use Code237\Nkap\Shared\VO\Id;
 use Code237\Nkap\Shared\VO\StringVO;
 
@@ -13,10 +12,10 @@ class AccountSUT
 {
     public Account $account;
     private Id $userId;
-    private AmountVo $balance;
-    private AmountVo $totalIncomes;
-    private AmountVo $totalExpenses;
-    private Datevo $lastTransactionDate;
+    private AmountVO $balance;
+    private AmountVO $totalIncomes;
+    private AmountVO $totalExpenses;
+    private DateVO $lastTransactionDate;
     private StringVO $accountName;
     private StringVO $iconName;
     private StringVO $color;
@@ -25,10 +24,10 @@ class AccountSUT
     {
         $self = new self();
         $self->userId = new Id();
-        $self->balance = new AmountVo(2000);
-        $self->totalIncomes = new AmountVo(3000);
-        $self->totalExpenses = new AmountVo(1000);
-        $self->lastTransactionDate = new Datevo('2023-09-30 12:30:00');
+        $self->balance = new AmountVO(2000);
+        $self->totalIncomes = new AmountVO(3000);
+        $self->totalExpenses = new AmountVO(1000);
+        $self->lastTransactionDate = new DateVO('2023-09-30 12:30:00');
         $self->accountName = new StringVO("Mes epargnes");
         $self->iconName = new StringVO('icone');
         $self->color = new StringVO('red');
@@ -37,6 +36,11 @@ class AccountSUT
         return $self;
     }
 
+    public function withBalance(float $amountValue): self
+    {
+        $this->balance = new AmountVO($amountValue);
+        return $this;
+    }
     public function build(): self
     {
         $this->account = Account::create(

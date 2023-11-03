@@ -2,7 +2,7 @@
 
 namespace Code237\Nkap\Account\tests\Unit\CommandBuilder;
 
-use Code237\Nkap\Account\Application\Command\Create\CreateAccountCommand;
+use Code237\Nkap\Account\Application\Command\Account\Create\CreateAccountCommand;
 
 class CreateAccountCommandBuilder
 {

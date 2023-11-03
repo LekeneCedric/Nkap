@@ -1,7 +1,8 @@
 <?php
 
-namespace Code237\Nkap\Account\Domain;
+namespace Code237\Nkap\Account\Domain\Repositories;
 
+use Code237\Nkap\Account\Domain\Account;
 use Code237\Nkap\Shared\VO\Id;
 
 interface AccountRepository

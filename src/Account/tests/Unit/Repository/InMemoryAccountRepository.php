@@ -3,7 +3,7 @@
 namespace Code237\Nkap\Account\tests\Unit\Repository;
 
 use Code237\Nkap\Account\Domain\Account;
-use Code237\Nkap\Account\Domain\AccountRepository;
+use Code237\Nkap\Account\Domain\Repositories\AccountRepository;
 use Code237\Nkap\Shared\VO\Id;
 
 class InMemoryAccountRepository implements AccountRepository

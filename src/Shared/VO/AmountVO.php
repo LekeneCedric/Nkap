@@ -5,7 +5,7 @@ namespace Code237\Nkap\Shared\VO;
 use Code237\Nkap\Shared\Enums\DeviceEnum;
 use InvalidArgumentException;
 
-class AmountVo
+class AmountVO
 {
     public function __construct(
         private float $amount,
@@ -20,6 +20,23 @@ class AmountVo
     public function value(): float
     {
         return $this->amount;
+    }
+
+    public function add(float $amountValue): static
+    {
+        $this->amount += $amountValue;
+        return $this;
+    }
+
+    public function remove(float $amountValue): static
+    {
+        $this->amount -= $amountValue;
+        return $this;
+    }
+
+    public function isLowerThan(float $amount): bool
+    {
+        return $this->amount < $amount;
     }
 
     public function readableValue(): string

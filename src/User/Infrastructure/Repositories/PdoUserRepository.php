@@ -4,10 +4,10 @@ namespace Code237\Nkap\User\Infrastructure\Repositories;
 
 use Code237\Nkap\Shared\Infrastructure\Lib\MySQLPdoConnection;
 use Code237\Nkap\Shared\Lib\PdoConnection;
-use Code237\Nkap\Shared\VO\Datevo;
-use Code237\Nkap\Shared\VO\EmailVo;
+use Code237\Nkap\Shared\VO\DateVO;
+use Code237\Nkap\Shared\VO\EmailVO;
 use Code237\Nkap\Shared\VO\Id;
-use Code237\Nkap\Shared\VO\PasswordVo;
+use Code237\Nkap\Shared\VO\PasswordVO;
 use Code237\Nkap\Shared\VO\StringVO;
 use Code237\Nkap\User\Domain\User;
 use Code237\Nkap\User\Domain\UserRepository;
@@ -73,11 +73,11 @@ readonly class PdoUserRepository implements UserRepository
         return User::create(
             name: new StringVO($result->name),
             surname: new StringVO($result->surname),
-            email: new EmailVo($result->email),
-            password: new PasswordVo(hashedPassword: $result->password),
+            email: new EmailVO($result->email),
+            password: new PasswordVO(hashedPassword: $result->password),
             id: new Id($result->uuid),
-            createdAt: new Datevo($result->created_at),
-            updatedAt: new Datevo($result->updated_at),
+            createdAt: new DateVO($result->created_at),
+            updatedAt: new DateVO($result->updated_at),
         );
     }
 

@@ -1,18 +1,18 @@
 <?php
 
-namespace Code237\Nkap\Account\tests\Unit;
+namespace Code237\Nkap\Account\tests\Unit\Account;
 
-use Code237\Nkap\Account\Application\Command\Create\CreateAccountCommand;
-use Code237\Nkap\Account\Application\Command\Create\CreateAccountHandler;
-use Code237\Nkap\Account\Application\Command\Create\CreateAccountResponse;
-use Code237\Nkap\Account\Domain\AccountRepository;
+use Code237\Nkap\Account\Application\Command\Account\Create\CreateAccountCommand;
+use Code237\Nkap\Account\Application\Command\Account\Create\CreateAccountHandler;
+use Code237\Nkap\Account\Application\Command\Account\Create\CreateAccountResponse;
 use Code237\Nkap\Account\Domain\Exceptions\UserLinkedToAccountDoesNotExistException;
+use Code237\Nkap\Account\Domain\Repositories\AccountRepository;
 use Code237\Nkap\Account\Domain\Services\CheckIfUserLinkedToAccountExistOrThrowException;
 use Code237\Nkap\Account\tests\Unit\CommandBuilder\CreateAccountCommandBuilder;
 use Code237\Nkap\Account\tests\Unit\Repository\InMemoryAccountRepository;
 use Code237\Nkap\Account\tests\Unit\Services\InMemoryCheckIfUserLinkedToAccountExistOrThrowException;
-use Code237\Nkap\Shared\VO\EmailVo;
-use Code237\Nkap\Shared\VO\PasswordVo;
+use Code237\Nkap\Shared\VO\EmailVO;
+use Code237\Nkap\Shared\VO\PasswordVO;
 use Code237\Nkap\Shared\VO\StringVO;
 use Code237\Nkap\User\Domain\User;
 use Exception;
@@ -80,8 +80,8 @@ class CreateAccountTest extends TestCase
         $user = User::create(
             name: new StringVO("ALKEBULAN"),
             surname: new StringVO("LEKENE"),
-            email: new EmailVo("alkebulan@gmail.com"),
-            password: PasswordVo::fromPassword('alkebulan@1234')
+            email: new EmailVO("alkebulan@gmail.com"),
+            password: PasswordVO::fromPassword('alkebulan@1234')
         );
 
         $this->checkIfUserLinkedToAccountExistOrThrowException->users[$user->id()->value()] = $user;

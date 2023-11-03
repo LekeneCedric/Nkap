@@ -5,7 +5,7 @@ namespace Code237\Nkap\Shared\VO;
 use DateTime;
 use Exception;
 
-class Datevo
+class DateVO
 {
     private string $value;
 

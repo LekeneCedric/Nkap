@@ -1,8 +1,8 @@
 <?php
 
-namespace Code237\Nkap\Account\Application\Command\Delete;
+namespace Code237\Nkap\Account\Application\Command\Account\Delete;
 
-use Code237\Nkap\Account\Domain\AccountRepository;
+use Code237\Nkap\Account\Domain\Repositories\AccountRepository;
 use Code237\Nkap\Shared\VO\Id;
 
 readonly class DeleteAccountHandler

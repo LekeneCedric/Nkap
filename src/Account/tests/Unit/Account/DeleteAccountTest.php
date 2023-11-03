@@ -1,11 +1,11 @@
 <?php
 
-namespace Code237\Nkap\Account\tests\Unit;
+namespace Code237\Nkap\Account\tests\Unit\Account;
 
-use Code237\Nkap\Account\Application\Command\Delete\DeleteAccountHandler;
-use Code237\Nkap\Account\Application\Command\Delete\DeleteAccountResponse;
+use Code237\Nkap\Account\Application\Command\Account\Delete\DeleteAccountHandler;
+use Code237\Nkap\Account\Application\Command\Account\Delete\DeleteAccountResponse;
 use Code237\Nkap\Account\Domain\Account;
-use Code237\Nkap\Account\Domain\AccountRepository;
+use Code237\Nkap\Account\Domain\Repositories\AccountRepository;
 use Code237\Nkap\Account\tests\Unit\Repository\InMemoryAccountRepository;
 use PHPUnit\Framework\TestCase;
 

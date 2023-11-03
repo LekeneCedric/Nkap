@@ -1,6 +1,6 @@
 <?php
 
-namespace Code237\Nkap\Account\Application\Command\Create;
+namespace Code237\Nkap\Account\Application\Command\Account;
 
 class AccountDto
 {
