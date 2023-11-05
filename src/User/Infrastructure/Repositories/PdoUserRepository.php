@@ -1,25 +1,24 @@
 <?php
 
-namespace Code237\Nkap\User\Infrastructure\Services;
+namespace Code237\Nkap\User\Infrastructure\Repositories;
 
 use Code237\Nkap\Shared\Infrastructure\Lib\MySQLPdoConnection;
 use Code237\Nkap\Shared\Lib\PdoConnection;
-use Code237\Nkap\Shared\VO\Datevo;
-use Code237\Nkap\Shared\VO\EmailVo;
+use Code237\Nkap\Shared\VO\DateVO;
+use Code237\Nkap\Shared\VO\EmailVO;
 use Code237\Nkap\Shared\VO\Id;
-use Code237\Nkap\Shared\VO\PasswordVo;
+use Code237\Nkap\Shared\VO\PasswordVO;
 use Code237\Nkap\Shared\VO\StringVO;
 use Code237\Nkap\User\Domain\User;
-use Code237\Nkap\User\Repository\UserRepository;
+use Code237\Nkap\User\Domain\UserRepository;
 use Exception;
 
-class PdoUserRepository implements UserRepository
+readonly class PdoUserRepository implements UserRepository
 {
     public function __construct(
-        private ?PdoConnection $pdoConnection = null,
+        private PdoConnection $pdoConnection,
     )
     {
-        $this->pdoConnection = new MySQLPdoConnection();
     }
 
     /**
@@ -38,16 +37,16 @@ class PdoUserRepository implements UserRepository
         $sql = " INSERT INTO users (uuid, name, surname, email, password, updated_at, created_at) 
                  VALUES (:uuid, :name, :surname, :email, :password, :updated_at, :created_at)";
 
-        $connection = $this->pdoConnection->getPdo()->prepare($sql);
-        $connection->bindParam('uuid', $userId);
-        $connection->bindParam('name', $userName);
-        $connection->bindParam('surname', $userSurName);
-        $connection->bindParam('email', $userEmail);
-        $connection->bindParam('password', $userPassword);
-        $connection->bindParam('updated_at', $userUpdatedAt);
-        $connection->bindParam('created_at', $userCreatedAt);
+        $statement = $this->pdoConnection->getPdo()->prepare($sql);
+        $statement->bindParam('uuid', $userId);
+        $statement->bindParam('name', $userName);
+        $statement->bindParam('surname', $userSurName);
+        $statement->bindParam('email', $userEmail);
+        $statement->bindParam('password', $userPassword);
+        $statement->bindParam('updated_at', $userUpdatedAt);
+        $statement->bindParam('created_at', $userCreatedAt);
 
-        $connection->execute();
+        $statement->execute();
 
         return true;
     }
@@ -74,11 +73,11 @@ class PdoUserRepository implements UserRepository
         return User::create(
             name: new StringVO($result->name),
             surname: new StringVO($result->surname),
-            email: new EmailVo($result->email),
-            password: new PasswordVo(hashedPassword: $result->password),
+            email: new EmailVO($result->email),
+            password: new PasswordVO(hashedPassword: $result->password),
             id: new Id($result->uuid),
-            createdAt: new Datevo($result->created_at),
-            updatedAt: new Datevo($result->updated_at),
+            createdAt: new DateVO($result->created_at),
+            updatedAt: new DateVO($result->updated_at),
         );
     }
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Code237\Nkap\config;
+namespace Code237\Nkap\Shared\config;
 use Dotenv\Dotenv as env;
 
-require_once __DIR__ . '/../../vendor/autoload.php'; // Include Composer's autoloader
-$dotenv = env::createImmutable(__DIR__. '/../../');
+require_once __DIR__ . '/../../../vendor/autoload.php'; // Include Composer's autoloader
+$dotenv = env::createImmutable(__DIR__. '/../../../');
 $dotenv->load();
 
 class Config

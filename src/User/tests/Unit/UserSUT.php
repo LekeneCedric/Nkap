@@ -2,9 +2,9 @@
 
 namespace Code237\Nkap\User\tests\Unit;
 
-use Code237\Nkap\Shared\VO\Datevo;
-use Code237\Nkap\Shared\VO\EmailVo;
-use Code237\Nkap\Shared\VO\PasswordVo;
+use Code237\Nkap\Shared\VO\DateVO;
+use Code237\Nkap\Shared\VO\EmailVO;
+use Code237\Nkap\Shared\VO\PasswordVO;
 use Code237\Nkap\Shared\VO\StringVO;
 use Code237\Nkap\User\Domain\User;
 
@@ -18,9 +18,9 @@ class UserSUT
        $self->user = User::create(
            name: new StringVO("Lekene"),
            surname: new StringVO("Luc cedric"),
-           email: new EmailVo("lekene@gmail.com"),
-           password: PasswordVo::fromPassword("hackerMan"),
-           createdAt: new Datevo(), updatedAt: new Datevo()
+           email: new EmailVO("lekene@gmail.com"),
+           password: PasswordVO::fromPassword("hackerMan"),
+           createdAt: new DateVO(), updatedAt: new DateVO()
        );
 
        return $self;
@@ -42,7 +42,7 @@ class UserSUT
 
     public function withEmail(string $email): static
     {
-        $this->user->changeEmail(new EmailVo($email));
+        $this->user->changeEmail(new EmailVO($email));
 
         return $this;
     }

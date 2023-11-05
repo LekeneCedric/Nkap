@@ -1,9 +1,8 @@
 <?php
 
-namespace Code237\Nkap\User\Repository;
+namespace Code237\Nkap\User\Domain;
 
 use Code237\Nkap\Shared\VO\Id;
-use Code237\Nkap\User\Domain\User;
 
 interface UserRepository
 {

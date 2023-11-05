@@ -2,10 +2,10 @@
 
 namespace Code237\Nkap\User\Domain;
 
-use Code237\Nkap\Shared\VO\Datevo;
-use Code237\Nkap\Shared\VO\EmailVo;
+use Code237\Nkap\Shared\VO\DateVO;
+use Code237\Nkap\Shared\VO\EmailVO;
 use Code237\Nkap\Shared\VO\Id;
-use Code237\Nkap\Shared\VO\PasswordVo;
+use Code237\Nkap\Shared\VO\PasswordVO;
 use Code237\Nkap\Shared\VO\StringVO;
 
 class User
@@ -14,22 +14,22 @@ class User
         private readonly Id      $id,
         private StringVO         $name,
         private StringVO         $surName,
-        private EmailVo          $email,
-        private PasswordVo       $password,
-        private readonly ?Datevo $createdAt,
-        private ?Datevo          $updatedAt,
+        private EmailVO          $email,
+        private PasswordVO       $password,
+        private readonly ?DateVO $createdAt,
+        private ?DateVO          $updatedAt,
     )
     {
     }
 
     public static function create(
-        StringVO $name,
-        StringVO $surname,
-        EmailVo $email,
-        PasswordVo $password,
-        ?Id $id = null,
-        ?Datevo $createdAt = null,
-        ?Datevo $updatedAt = null,
+        StringVO   $name,
+        StringVO   $surname,
+        EmailVO    $email,
+        PasswordVO $password,
+        ?Id        $id = null,
+        ?DateVO    $createdAt = null,
+        ?DateVO    $updatedAt = null,
     ): self
     {
         return new self(
@@ -50,7 +50,7 @@ class User
     public function changeName(StringVO $name): void
     {
         $this->name = $name;
-        $this->updatedAt = new Datevo();
+        $this->updatedAt = new DateVO();
     }
 
     /**
@@ -60,23 +60,23 @@ class User
     public function changeSurname(StringVO $surname): void
     {
         $this->surName = $surname;
-        $this->updatedAt = new Datevo();
+        $this->updatedAt = new DateVO();
     }
 
     /**
-     * @param EmailVo $email
+     * @param EmailVO $email
      * @return void
      */
-    public function changeEmail(EmailVo $email): void
+    public function changeEmail(EmailVO $email): void
     {
         $this->email = $email;
-        $this->updatedAt = new Datevo();
+        $this->updatedAt = new DateVO();
     }
 
-    public function changePassword(PasswordVo $password): void
+    public function changePassword(PasswordVO $password): void
     {
         $this->password = $password;
-        $this->updatedAt = new Datevo();
+        $this->updatedAt = new DateVO();
     }
     public function id(): Id
     {
@@ -99,24 +99,24 @@ class User
     }
 
     /**
-     * @return EmailVo
+     * @return EmailVO
      */
-    public function email(): EmailVo
+    public function email(): EmailVO
     {
         return $this->email;
     }
 
-    public function password(): PasswordVo
+    public function password(): PasswordVO
     {
         return $this->password;
     }
 
-    public function createdAt(): ?Datevo
+    public function createdAt(): ?DateVO
     {
         return $this->createdAt;
     }
 
-    public function updatedAt(): ?Datevo
+    public function updatedAt(): ?DateVO
     {
         return $this->updatedAt;
     }

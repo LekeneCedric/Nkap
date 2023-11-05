@@ -2,7 +2,7 @@
 
 namespace Code237\Nkap\Shared\VO;
 
-class PasswordVo
+class PasswordVO
 {
     public function __construct(
         private ?string $password = null,
@@ -11,7 +11,7 @@ class PasswordVo
     {
     }
 
-    public static function fromPassword(string $password): PasswordVo
+    public static function fromPassword(string $password): PasswordVO
     {
         $self = new self();
 
@@ -21,7 +21,7 @@ class PasswordVo
         return $self;
     }
 
-    public static function fromHashedPassword(string $hashedPassword): PasswordVo
+    public static function fromHashedPassword(string $hashedPassword): PasswordVO
     {
         $self = new self();
 
