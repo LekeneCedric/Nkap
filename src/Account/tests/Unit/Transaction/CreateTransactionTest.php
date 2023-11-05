@@ -9,13 +9,10 @@ use Code237\Nkap\Account\Domain\Exceptions\InvalidTransactionException;
 use Code237\Nkap\Account\Domain\Exceptions\NotFoundAccountException;
 use Code237\Nkap\Account\Domain\Repositories\AccountRepository;
 use Code237\Nkap\Account\tests\Unit\Account\AccountSUT;
-use Code237\Nkap\Account\tests\Unit\CommandBuilder\CreateTransactionCommandBuilder;
+use Code237\Nkap\Account\tests\Unit\CommandBuilder\Transaction\CreateTransactionCommandBuilder;
 use Code237\Nkap\Account\tests\Unit\Repository\InMemoryAccountRepository;
 use Code237\Nkap\Shared\Enums\TransactionTypeEnum;
-use Code237\Nkap\Shared\VO\AmountVO;
-use Code237\Nkap\Shared\VO\DateVO;
 use Code237\Nkap\Shared\VO\Id;
-use Code237\Nkap\Shared\VO\StringVO;
 use PHPUnit\Framework\TestCase;
 
 class CreateTransactionTest extends TestCase

@@ -25,8 +25,8 @@ class AccountSUT
         $self = new self();
         $self->userId = new Id();
         $self->balance = new AmountVO(2000);
-        $self->totalIncomes = new AmountVO(3000);
-        $self->totalExpenses = new AmountVO(1000);
+        $self->totalIncomes = new AmountVO(0);
+        $self->totalExpenses = new AmountVO(0);
         $self->lastTransactionDate = new DateVO('2023-09-30 12:30:00');
         $self->accountName = new StringVO("Mes epargnes");
         $self->iconName = new StringVO('icone');

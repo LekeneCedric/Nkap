@@ -54,7 +54,10 @@ class Transaction
     {
         return $this->id;
     }
-
+    public function accountId(): Id
+    {
+        return $this->accountId;
+    }
     public function amount(): AmountVO
     {
         return $this->transactionAmount;
@@ -63,6 +66,11 @@ class Transaction
     public function transactionType(): TransactionTypeEnum
     {
         return $this->transactionType;
+    }
+
+    public function transactionCategory(): Id
+    {
+        return $this->transactionCategoryId;
     }
 
     public function description(): StringVO
@@ -78,6 +86,21 @@ class Transaction
     public function type(): TransactionTypeEnum
     {
         return $this->transactionType;
+    }
+
+    public function createdAt(): DateVO
+    {
+        return $this->createdAt;
+    }
+
+    public function updatedAt(): DateVO
+    {
+        return $this->updatedAt;
+    }
+
+    public function changeAmount(float $value): void
+    {
+        $this->transactionAmount = new AmountVO($value);
     }
 
 

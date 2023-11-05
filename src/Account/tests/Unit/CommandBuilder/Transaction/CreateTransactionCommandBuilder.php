@@ -1,6 +1,6 @@
 <?php
 
-namespace Code237\Nkap\Account\tests\Unit\CommandBuilder;
+namespace Code237\Nkap\Account\tests\Unit\CommandBuilder\Transaction;
 
 use Code237\Nkap\Account\Application\Command\Transaction\Create\CreateTransactionCommand;
 

@@ -68,16 +68,6 @@ class Account
         return $this->color;
     }
 
-    public function createdAt(): DateVO
-    {
-        return $this->createdAt;
-    }
-
-    public function updatedAt(): DateVO
-    {
-        return $this->updatedAt;
-    }
-
     public function changeName(StringVO $name): void
     {
         $this->accountName = $name;
@@ -86,6 +76,104 @@ class Account
     public function transactions(): array
     {
         return $this->transactions;
+    }
+
+    /**
+     * @param Id $transactionId
+     * @return Transaction
+     */
+    public function getTransaction(Id $transactionId): Transaction
+    {
+        return $this->transactions[$transactionId->value()];
+    }
+
+    /**
+     * @throws InvalidTransactionException
+     */
+    public function updateTransaction(Transaction $updatedTransaction): void
+    {
+        $accountCreatedAt = $this->transactions[$updatedTransaction->id()->value()]->createdAt();
+        $this->removeTransaction($updatedTransaction->id());
+        $this->addTransaction(
+            transactionCategoryId: $updatedTransaction->transactionCategory(),
+            transactionType: $updatedTransaction->transactionType(),
+            transactionAmount: $updatedTransaction->amount(),
+            transactionDescription: $updatedTransaction->description(),
+            transactionOperationDate: $updatedTransaction->operationDate(),
+            id: $updatedTransaction->id(),
+            createdAt: $accountCreatedAt,
+            updatedAt: $updatedTransaction->updatedAt(),
+        );
+    }
+
+    /**
+     * @param Id $transactionId
+     * @return void
+     */
+    public function removeTransaction(Id $transactionId): void
+    {
+        $this->updateAccountInformationsAfterDeleteTransaction($this->transactions[$transactionId->value()]);
+        unset($this->transactions[$transactionId->value()]);
+    }
+
+    /**
+     * @param Transaction $transactionToDelete
+     * @return void
+     */
+    private function updateAccountInformationsAfterDeleteTransaction(Transaction $transactionToDelete): void
+    {
+        $currentDate = new DateVO();
+        $transactionAmount = $transactionToDelete->amount()->value();
+
+        if ($transactionToDelete->transactionType() === TransactionTypeEnum::INCOME) {
+            $newAccountBalanceValue = $this->balance->remove($transactionAmount);
+            $this->changeBalance($newAccountBalanceValue);
+            $newAccountTotalIncomesAmount = $this->totalIncomes()->remove($transactionAmount);
+            $this->changeTotalIncomes($newAccountTotalIncomesAmount);
+        }
+        if ($transactionToDelete->transactionType() === TransactionTypeEnum::EXPENSE) {
+            $newAccountBalanceValue = $this->balance->add($transactionAmount);
+            $this->changeBalance($newAccountBalanceValue);
+            $newAccountTotalExpensesAmount = $this->totalExpenses()->remove($transactionAmount);
+            $this->changeTotalExpenses($newAccountTotalExpensesAmount);
+        }
+
+        $this->changeUpdatedAt($currentDate);
+    }
+
+    private function changeBalance(AmountVO $amount): void
+    {
+        $this->balance = $amount;
+    }
+
+    public function totalIncomes(): AmountVO
+    {
+        return $this->totalIncomes;
+    }
+
+    private function changeTotalIncomes(AmountVO $amount): void
+    {
+        $this->totalIncomes = $amount;
+    }
+
+    public function totalExpenses(): AmountVO
+    {
+        return $this->totalExpenses;
+    }
+
+    private function changeTotalExpenses(AmountVO $amount): void
+    {
+        $this->totalExpenses = $amount;
+    }
+
+    private function changeUpdatedAt(DateVO $currentDate): void
+    {
+        $this->updatedAt = $currentDate;
+    }
+
+    public function id(): Id
+    {
+        return $this->id;
     }
 
     /**
@@ -98,6 +186,8 @@ class Account
         StringVO            $transactionDescription,
         DateVO              $transactionOperationDate,
         ?Id                 $id = null,
+        ?DateVO             $createdAt = null,
+        ?DateVO             $updatedAt = null,
     ): void
     {
         $newTransaction = Transaction::create(
@@ -107,22 +197,15 @@ class Account
             amount: $transactionAmount,
             description: $transactionDescription,
             operationDate: $transactionOperationDate,
-            id: $id ?: new Id()
+            id: $id ?: new Id(),
+            createdAt: $createdAt ?: new DateVO(),
+            updatedAt: $updatedAt ?: new DateVO(),
         );
         $this->checkIfTransactionIsPermitted($newTransaction);
         $this->updateAccountInformationsAfterAddTransaction($newTransaction);
         $this->transactions[$newTransaction->id()->value()] = $newTransaction;
     }
 
-    /**
-     * @param Id $transactionId
-     * @return void
-     */
-    public function removeTransaction(Id $transactionId): void
-    {
-        $this->updateAccountInformationsAfterDeleteTransaction($this->transactions[$transactionId->value()]);
-        unset($this->transactions[$transactionId->value()]);
-    }
     public static function create(
         Id        $userId,
         AmountVO  $balance,
@@ -201,75 +284,31 @@ class Account
         $this->changeUpdatedAt($currentDate);
     }
 
-    /**
-     * @param Transaction $transactionToDelete
-     * @return void
-     */
-    private function updateAccountInformationsAfterDeleteTransaction(Transaction $transactionToDelete): void
-    {
-        $currentDate = new DateVO();
-        $transactionAmount = $transactionToDelete->amount()->value();
-
-        if ($transactionToDelete->transactionType() === TransactionTypeEnum::INCOME) {
-            $newAccountBalanceValue = $this->balance->remove($transactionAmount);
-            $this->changeBalance($newAccountBalanceValue);
-            $newAccountTotalIncomesAmount = $this->totalIncomes()->remove($transactionAmount);
-            $this->changeTotalIncomes($newAccountTotalIncomesAmount);
-        }
-        if ($transactionToDelete->transactionType() === TransactionTypeEnum::EXPENSE) {
-            $newAccountBalanceValue = $this->balance->add($transactionAmount);
-            $this->changeBalance($newAccountBalanceValue);
-            $newAccountTotalExpensesAmount = $this->totalExpenses()->remove($transactionAmount);
-            $this->changeTotalExpenses($newAccountTotalExpensesAmount);
-        }
-
-        $this->changeUpdatedAt($currentDate);
-    }
-
-    private function changeBalance(AmountVO $amount): void
-    {
-        $this->balance = $amount;
-    }
-
-    private function changeTotalIncomes(AmountVO $amount): void
-    {
-        $this->totalIncomes = $amount;
-    }
-
-    private function changeTotalExpenses(AmountVO $amount): void
-    {
-        $this->totalExpenses = $amount;
-    }
-
     private function changeLastTransactionDate(DateVO $currentDate): void
     {
         $this->lastTransactionDate = $currentDate;
     }
 
-    private function changeUpdatedAt(DateVO $currentDate): void
+    public function createdAt(): DateVO
     {
-        $this->updatedAt = $currentDate;
+        return $this->createdAt;
     }
 
-
-
-    public function id(): Id
+    public function updatedAt(): DateVO
     {
-        return $this->id;
+        return $this->updatedAt;
     }
 
-    public function totalIncomes(): AmountVO
-    {
-        return $this->totalIncomes;
-    }
-
-    public function totalExpenses(): AmountVO
-    {
-        return $this->totalExpenses;
-    }
-
+    /**
+     * @param Transaction[] $transactions
+     * @return void
+     */
     public function changeTransactions(array $transactions): void
     {
-        $this->transactions = $transactions;
+        $newTransactions = [];
+        foreach ($transactions as $transaction) {
+            $newTransactions[$transaction->id()->value()] = $transaction;
+        }
+        $this->transactions = $newTransactions;
     }
 }

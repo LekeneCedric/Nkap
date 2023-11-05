@@ -8,7 +8,7 @@ use Code237\Nkap\Account\Application\Command\Account\Create\CreateAccountRespons
 use Code237\Nkap\Account\Domain\Exceptions\UserLinkedToAccountDoesNotExistException;
 use Code237\Nkap\Account\Domain\Repositories\AccountRepository;
 use Code237\Nkap\Account\Domain\Services\CheckIfUserLinkedToAccountExistOrThrowException;
-use Code237\Nkap\Account\tests\Unit\CommandBuilder\CreateAccountCommandBuilder;
+use Code237\Nkap\Account\tests\Unit\CommandBuilder\Account\CreateAccountCommandBuilder;
 use Code237\Nkap\Account\tests\Unit\Repository\InMemoryAccountRepository;
 use Code237\Nkap\Account\tests\Unit\Services\InMemoryCheckIfUserLinkedToAccountExistOrThrowException;
 use Code237\Nkap\Shared\VO\EmailVO;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Code237\Nkap\Account\tests\Unit\CommandBuilder;
+namespace Code237\Nkap\Account\tests\Unit\CommandBuilder\Account;
 
 use Code237\Nkap\Account\Application\Command\Account\Create\CreateAccountCommand;
 

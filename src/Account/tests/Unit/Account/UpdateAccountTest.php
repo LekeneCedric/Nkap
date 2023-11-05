@@ -8,7 +8,7 @@ use Code237\Nkap\Account\Application\Command\Account\Update\UpdateAccountRespons
 use Code237\Nkap\Account\Domain\Account;
 use Code237\Nkap\Account\Domain\Repositories\AccountRepository;
 use Code237\Nkap\Account\Domain\Services\CheckIfAlreadyExistAccountByIdOrThrowNotFoundAccountExceptionService;
-use Code237\Nkap\Account\tests\Unit\CommandBuilder\UpdateAccountCommandBuilder;
+use Code237\Nkap\Account\tests\Unit\CommandBuilder\Account\UpdateAccountCommandBuilder;
 use Code237\Nkap\Account\tests\Unit\Repository\InMemoryAccountRepository;
 use Code237\Nkap\Account\tests\Unit\Services\InMemoryCheckIfAlreadyExistAccountByIdOrThrowAccountExceptionService;
 use Code237\Nkap\Shared\VO\StringVO;
