@@ -134,6 +134,7 @@ readonly class PdoAccountRepository implements AccountRepository
     public function update(Account $accountToUpdate): true
     {
         $accountTransactions = $accountToUpdate->transactions();
+        $deletedTransactionIds = $accountToUpdate->deletedTransactions();
 
         $accountId = $accountToUpdate->id()->value();
         $userId = $accountToUpdate->userId()->value();
@@ -181,7 +182,7 @@ readonly class PdoAccountRepository implements AccountRepository
 
         $statement->execute();
 
-        $this->updateTransactionsByAccountId($accountId, $accountTransactions);
+        $this->updateTransactionsByAccountId($accountId, $accountTransactions, $deletedTransactionIds);
 
         return true;
     }
@@ -286,13 +287,13 @@ readonly class PdoAccountRepository implements AccountRepository
     /**
      * @param string $accountId
      * @param Transaction[] $accountTransactions
+     * @param string[] $deletedTransactionIds
      * @return void
      * @throws Exception
      */
-    private function updateTransactionsByAccountId(string $accountId, array $accountTransactions): void
+    private function updateTransactionsByAccountId(string $accountId, array $accountTransactions, array $deletedTransactionIds): void
     {
-        foreach ($accountTransactions as $transaction)
-        {
+        foreach ($accountTransactions as $transaction) {
             $transactionId = $transaction->id()->value();
             $transactionCategoryId = $transaction->transactionCategory()->value();
             $transactionType = $transaction->type()->value;
@@ -326,6 +327,18 @@ readonly class PdoAccountRepository implements AccountRepository
             $statement->bindParam('createdAt', $transactionCreatedAt);
             $statement->bindParam('updatedAt', $transactionUpdatedAt);
 
+            $statement->execute();
+        }
+
+        foreach ($deletedTransactionIds as $deletedTransactionId) {
+
+            $sql = "
+                DELETE FROM Transactions where uuid = :transactionId
+            ";
+
+            $statement = $this->pdoConnection->getPdo()->prepare($sql);
+
+            $statement->bindParam('transactionId', $deletedTransactionId);
             $statement->execute();
         }
 

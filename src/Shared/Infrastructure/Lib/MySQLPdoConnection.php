@@ -2,7 +2,7 @@
 
 namespace Code237\Nkap\Shared\Infrastructure\Lib;
 
-use Code237\Nkap\config\Config;
+use Code237\Nkap\Shared\config\Config;
 use Code237\Nkap\Shared\Lib\PdoConnection;
 use PDO;
 use PDOException;

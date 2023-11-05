@@ -183,4 +183,39 @@ class AccountRepositoryTest extends TestCase
         $this->assertEquals(3000, $updatedAccount->balance()->value());
         $this->assertEquals(1000, $updatedTransaction->amount()->value());
     }
+
+    /**
+     * @throws InvalidTransactionException
+     * @throws Exception
+     */
+    public function test_can_delete_account_transaction()
+    {
+        $accountToCreate = Account::create(
+            userId: new Id(),
+            balance: new AmountVO(2000),
+            name: new StringVO("compte divertissement"),
+            isIncludeInTotalBalance: true
+        );
+        $transactionId = new Id();
+        $accountToCreate->addTransaction(
+            transactionCategoryId: new Id(),
+            transactionType: TransactionTypeEnum::INCOME,
+            transactionAmount: new AmountVO(2700),
+            transactionDescription: new StringVO("transaction description"),
+            transactionOperationDate: new  DateVO(),
+            id: $transactionId
+        );
+
+        $this->accountRepository->create($accountToCreate);
+
+        $createdAccount = $this->accountRepository->getById($accountToCreate->id());
+        $createdAccount->removeTransaction($transactionId);
+
+        $this->accountRepository->update($createdAccount);
+
+        $updatedAccount = $this->accountRepository->getById($createdAccount->id());
+
+        $this->assertCount(0, $updatedAccount->transactions());
+        $this->assertEquals(2000, $updatedAccount->balance()->value());
+    }
 }

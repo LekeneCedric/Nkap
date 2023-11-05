@@ -13,6 +13,7 @@ class Account
 {
     private ?DateVO $createdAt = null;
     private ?DateVO $updatedAt = null;
+    private array $deletedTransactionIds = [];
     /**
      * @var Transaction[]
      */
@@ -92,8 +93,8 @@ class Account
      */
     public function updateTransaction(Transaction $updatedTransaction): void
     {
-        $accountCreatedAt = $this->transactions[$updatedTransaction->id()->value()]->createdAt();
-        $this->removeTransaction($updatedTransaction->id());
+        $previousTransactionCreatedAt = $this->transactions[$updatedTransaction->id()->value()]->createdAt();
+        $this->removeTransaction( transactionId: $updatedTransaction->id(), toAddToTransactionToDelete: false);
         $this->addTransaction(
             transactionCategoryId: $updatedTransaction->transactionCategory(),
             transactionType: $updatedTransaction->transactionType(),
@@ -101,19 +102,33 @@ class Account
             transactionDescription: $updatedTransaction->description(),
             transactionOperationDate: $updatedTransaction->operationDate(),
             id: $updatedTransaction->id(),
-            createdAt: $accountCreatedAt,
+            createdAt: $previousTransactionCreatedAt,
             updatedAt: $updatedTransaction->updatedAt(),
         );
     }
 
+    public function createdAt(): DateVO
+    {
+        return $this->createdAt;
+    }
+
+    public function id(): Id
+    {
+        return $this->id;
+    }
+
     /**
      * @param Id $transactionId
+     * @param bool $toAddToTransactionToDelete
      * @return void
      */
-    public function removeTransaction(Id $transactionId): void
+    public function removeTransaction(Id $transactionId, bool $toAddToTransactionToDelete = true): void
     {
         $this->updateAccountInformationsAfterDeleteTransaction($this->transactions[$transactionId->value()]);
         unset($this->transactions[$transactionId->value()]);
+        if ($toAddToTransactionToDelete) {
+            $this->deletedTransactionIds[] = $transactionId->value();
+        }
     }
 
     /**
@@ -169,11 +184,6 @@ class Account
     private function changeUpdatedAt(DateVO $currentDate): void
     {
         $this->updatedAt = $currentDate;
-    }
-
-    public function id(): Id
-    {
-        return $this->id;
     }
 
     /**
@@ -289,14 +299,14 @@ class Account
         $this->lastTransactionDate = $currentDate;
     }
 
-    public function createdAt(): DateVO
-    {
-        return $this->createdAt;
-    }
-
     public function updatedAt(): DateVO
     {
         return $this->updatedAt;
+    }
+
+    public function deletedTransactions(): array
+    {
+        return $this->deletedTransactionIds;
     }
 
     /**

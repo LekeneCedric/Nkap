@@ -5,7 +5,7 @@
 /storage/*.key
 /vendor
 vendor
-/src/config/.env
+/src/Shared/config/.env
 /.env.backup
 /.env.production
 /   .phpunit.result.cache
@@ -35,7 +35,7 @@ composer.lock
 /composer.lock
 /phpunit.xml
 front-app/node_modules
-src/config/.env
+src/Shared/config/.env
 /storage/debugbar
 *.idea
 /public/build
