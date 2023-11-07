@@ -81,10 +81,13 @@ class Account
 
     /**
      * @param Id $transactionId
-     * @return Transaction
+     * @return Transaction|null
      */
-    public function getTransaction(Id $transactionId): Transaction
+    public function getTransaction(Id $transactionId): ?Transaction
     {
+        if (!array_key_exists($transactionId->value(), $this->transactions)) {
+            return null;
+        }
         return $this->transactions[$transactionId->value()];
     }
 

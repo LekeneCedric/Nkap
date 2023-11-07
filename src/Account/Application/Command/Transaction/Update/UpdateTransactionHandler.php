@@ -5,6 +5,7 @@ namespace Code237\Nkap\Account\Application\Command\Transaction\Update;
 use Code237\Nkap\Account\Domain\Account;
 use Code237\Nkap\Account\Domain\Exceptions\InvalidTransactionException;
 use Code237\Nkap\Account\Domain\Exceptions\NotFoundAccountException;
+use Code237\Nkap\Account\Domain\Exceptions\NotFoundTransactionException;
 use Code237\Nkap\Account\Domain\Repositories\AccountRepository;
 use Code237\Nkap\Account\Domain\Transaction;
 use Code237\Nkap\Shared\Enums\TransactionTypeEnum;
@@ -24,12 +25,15 @@ readonly class UpdateTransactionHandler
     /**
      * @throws NotFoundAccountException
      * @throws InvalidTransactionException
+     * @throws NotFoundTransactionException
      */
     public function handle(UpdateTransactionCommand $updateTransactionCommand): UpdateTransactionResponse
     {
         $response = new UpdateTransactionResponse();
 
         $account = $this->getAccountOrThrowNotFoundAccountException($updateTransactionCommand->accountId);
+        $this->checkIfTransactionExistOrThrowNotFoundTransactionException($account, $updateTransactionCommand->id);
+
         $updatedTransaction = $this->createUpdatedTransactionByCommand($updateTransactionCommand);
 
         $account->updateTransaction($updatedTransaction);
@@ -66,5 +70,19 @@ readonly class UpdateTransactionHandler
             throw new NotFoundAccountException("Cette transaction ne correspond a aucun compte !");
         }
         return $account;
+    }
+
+    /**
+     * @param Account $account
+     * @param string $transactionId
+     * @throws NotFoundTransactionException
+     * @return void
+     */
+    private function checkIfTransactionExistOrThrowNotFoundTransactionException(Account $account, string $transactionId): void
+    {
+        $transaction = $account->getTransaction(new Id($transactionId));
+        if (is_null($transaction)) {
+            throw new NotFoundTransactionException("Cette transaction ne correspond a aucune transaction de ce compte !");
+        }
     }
 }

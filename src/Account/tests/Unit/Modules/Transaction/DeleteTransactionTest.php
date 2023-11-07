@@ -1,14 +1,13 @@
 <?php
 
-namespace Code237\Nkap\Account\tests\Unit\Transaction;
+namespace Code237\Nkap\Account\tests\Unit\Modules\Transaction;
 
 use Code237\Nkap\Account\Application\Command\Transaction\Delete\DeleteTransactionHandler;
 use Code237\Nkap\Account\Application\Command\Transaction\Delete\DeleteTransactionResponse;
 use Code237\Nkap\Account\Domain\Exceptions\InvalidTransactionException;
 use Code237\Nkap\Account\Domain\Exceptions\NotFoundAccountException;
 use Code237\Nkap\Account\Domain\Repositories\AccountRepository;
-use Code237\Nkap\Account\Domain\Transaction;
-use Code237\Nkap\Account\tests\Unit\Account\AccountSUT;
+use Code237\Nkap\Account\tests\Unit\Modules\Account\AccountSUT;
 use Code237\Nkap\Account\tests\Unit\Repository\InMemoryAccountRepository;
 use Code237\Nkap\Shared\Enums\TransactionTypeEnum;
 use Code237\Nkap\Shared\VO\AmountVO;

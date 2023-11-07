@@ -1,6 +1,6 @@
 <?php
 
-namespace Code237\Nkap\Account\tests\Unit\Account;
+namespace Code237\Nkap\Account\tests\Unit\Modules\Account;
 
 use Code237\Nkap\Account\Application\Command\Account\Update\UpdateAccountCommand;
 use Code237\Nkap\Account\Application\Command\Account\Update\UpdateAccountHandler;
@@ -12,6 +12,7 @@ use Code237\Nkap\Account\tests\Unit\CommandBuilder\Account\UpdateAccountCommandB
 use Code237\Nkap\Account\tests\Unit\Repository\InMemoryAccountRepository;
 use Code237\Nkap\Account\tests\Unit\Services\InMemoryCheckIfAlreadyExistAccountByIdOrThrowAccountExceptionService;
 use Code237\Nkap\Shared\VO\StringVO;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 class UpdateAccountTest extends TestCase
@@ -27,7 +28,7 @@ class UpdateAccountTest extends TestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function test_can_update_account()
     {

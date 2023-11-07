@@ -1,6 +1,6 @@
 <?php
 
-namespace Code237\Nkap\Account\tests\Unit\Transaction;
+namespace Code237\Nkap\Account\tests\Unit\Modules\Transaction;
 
 use Code237\Nkap\Account\Application\Command\Transaction\Create\CreateTransactionCommand;
 use Code237\Nkap\Account\Application\Command\Transaction\Create\CreateTransactionHandler;
@@ -8,8 +8,8 @@ use Code237\Nkap\Account\Application\Command\Transaction\Create\CreateTransactio
 use Code237\Nkap\Account\Domain\Exceptions\InvalidTransactionException;
 use Code237\Nkap\Account\Domain\Exceptions\NotFoundAccountException;
 use Code237\Nkap\Account\Domain\Repositories\AccountRepository;
-use Code237\Nkap\Account\tests\Unit\Account\AccountSUT;
 use Code237\Nkap\Account\tests\Unit\CommandBuilder\Transaction\CreateTransactionCommandBuilder;
+use Code237\Nkap\Account\tests\Unit\Modules\Account\AccountSUT;
 use Code237\Nkap\Account\tests\Unit\Repository\InMemoryAccountRepository;
 use Code237\Nkap\Shared\Enums\TransactionTypeEnum;
 use Code237\Nkap\Shared\VO\Id;

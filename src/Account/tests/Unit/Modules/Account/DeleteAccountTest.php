@@ -1,6 +1,6 @@
 <?php
 
-namespace Code237\Nkap\Account\tests\Unit\Account;
+namespace Code237\Nkap\Account\tests\Unit\Modules\Account;
 
 use Code237\Nkap\Account\Application\Command\Account\Delete\DeleteAccountHandler;
 use Code237\Nkap\Account\Application\Command\Account\Delete\DeleteAccountResponse;
